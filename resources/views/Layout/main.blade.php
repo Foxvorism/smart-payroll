@@ -36,12 +36,6 @@
                                 </a>
                             </li>
                             <li class="">
-                                <a href="/role">
-                                    <i class="icon ph-bold ph-identification-badge"></i>
-                                    <span class="text">Data Role</span>
-                                </a>
-                            </li>
-                            <li class="">
                                 <a href="/siswa">
                                     <i class="icon ph-bold ph-file-text"></i>
                                     <span class="text">Data Siswa</span>
