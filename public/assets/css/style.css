@@ -319,30 +319,29 @@
 }
 
 #content .body .table-card .data-table .tab-pane {
-    padding-top: 25px;
+    padding-top: 10px;
 }
 
 #content .body .table-card .data-table .action {
     display: flex;
     align-items: center;
+    justify-content: start;
     margin-bottom: 10px;
 }
 
 #content .body .table-card .data-table .action .btn-add {
-    width: 150px;
-    height: 33px;
+    padding: 5px 20px;
     border-radius: 0.25rem;
-    border: 1px solid var(--color-blue);
+    border: 1px solid var(--color-red);
     background-color: #ffffff;
-    color: var(--color-blue);
+    color: var(--color-red);
     font-size: 14px;
     font-weight: 600;
     transition: all 0.2s ease;
-    margin-right: 10px;
 }
 
 #content .body .table-card .data-table .action .btn-add:hover {
-    background-color: var(--color-blue);
+    background-color: var(--color-red);
     color: #ffffff;
 }
 
@@ -360,4 +359,21 @@
 
 #content .body .table-card .data-table .table th {
     color: var(--color-blue) !important;
+}
+
+#content .modal .btn-submit {
+    width: 100%;
+    padding: 5px 20px;
+    border-radius: 0.25rem;
+    border: 1px solid var(--color-red);
+    background-color: #ffffff;
+    color: var(--color-red);
+    font-size: 14px;
+    font-weight: 600;
+    transition: all 0.2s ease;
+}
+
+#content .modal .btn-submit:hover {
+    background-color: var(--color-red);
+    color: #ffffff;
 }
