@@ -3,13 +3,16 @@
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\RoleController;
+use App\Http\Controllers\UserController;
 
 Route::get('/', function () {
     return view('auth');
 });
 
-Route::get('/user', function () {
-    return view('user');
+Route::prefix('user')->group(function () {
+    Route::get('/', [UserController::class, 'index']);
+    Route::post('/store', [UserController::class, 'storeUser']);
+    Route::get('/destroy/{id}', [UserController::class, 'destroyUser']);
 });
 
 Route::get('/siswa', function () {
