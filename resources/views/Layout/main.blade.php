@@ -30,9 +30,15 @@
                         <p class="title">For Admin</p>
                         <ul>
                             <li class="active">
-                                <a href="/tutor">
+                                <a href="/user">
                                     <i class="icon ph-bold ph-user"></i>
-                                    <span class="text">Data Tutor</span>
+                                    <span class="text">Data User</span>
+                                </a>
+                            </li>
+                            <li class="">
+                                <a href="/role">
+                                    <i class="icon ph-bold ph-identification-badge"></i>
+                                    <span class="text">Data Role</span>
                                 </a>
                             </li>
                             <li class="">
