@@ -2,16 +2,18 @@
 
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\RoleController;
+
 Route::get('/', function () {
     return view('auth');
 });
 
-Route::get('/siswa', function () {
-    return view('siswa');
+Route::get('/user', function () {
+    return view('user');
 });
 
-Route::get('/tutor', function () {
-    return view('tutor');
+Route::get('/siswa', function () {
+    return view('siswa');
 });
 
 Route::get('/kelas', function () {
