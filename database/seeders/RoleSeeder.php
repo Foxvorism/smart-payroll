@@ -18,13 +18,25 @@ class RoleSeeder extends Seeder
         $updatedAt = Carbon::today()->toDateString();
 
         Role::insert([
-            'role' => 'admin',
+            'role' => 'Admin',
             'created_at' => $createdAt,
             'updated_at' => $updatedAt,
         ]);
 
         Role::insert([
-            'role' => 'tutor',
+            'role' => 'Tutor SD',
+            'created_at' => $createdAt,
+            'updated_at' => $updatedAt,
+        ]);
+
+        Role::insert([
+            'role' => 'Tutor SMP',
+            'created_at' => $createdAt,
+            'updated_at' => $updatedAt,
+        ]);
+
+        Role::insert([
+            'role' => 'Tutor SMA',
             'created_at' => $createdAt,
             'updated_at' => $updatedAt,
         ]);
