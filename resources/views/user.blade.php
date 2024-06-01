@@ -7,7 +7,7 @@
                 <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item">Dashboard</li>
-                        <li class="breadcrumb-item"><b>Data Tutor</b></li>
+                        <li class="breadcrumb-item"><b>Data User</b></li>
                     </ol>
                 </nav>
             </div>
@@ -20,26 +20,36 @@
         <div class="row">
             <div class="col">
                 <div class="stat-card">
-                    <i class="ph ph-users"></i> Jumlah Tutor Jenjang SD :
+                    <i class="ph ph-users"></i> Jumlah Admin : {{ $admin->count() }}
                 </div>
             </div>
             <div class="col">
                 <div class="stat-card">
-                    <i class="ph ph-users"></i> Jumlah Tutor Jenjang SMP :
+                    <i class="ph ph-users"></i> Jumlah Tutor SD : {{ $tutor_sd->count() }}
                 </div>
             </div>
             <div class="col">
                 <div class="stat-card">
-                    <i class="ph ph-users"></i> Jumlah Tutor Jenjang SMA :
+                    <i class="ph ph-users"></i> Jumlah Tutor SMP : {{ $tutor_smp->count() }}
+                </div>
+            </div>
+            <div class="col">
+                <div class="stat-card">
+                    <i class="ph ph-users"></i> Jumlah Tutor SMA : {{ $tutor_sma->count() }}
                 </div>
             </div>
         </div>
         <div class="table-card">
             <div class="data-table">
+                <div class="action">
+                    <button class="btn-add" data-bs-toggle="modal" data-bs-target="#exampleModal">Tambah User</button>
+                </div>
                 <nav>
                     <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                        <button class="nav-link active" id="nav-sd-tab" data-bs-toggle="tab" data-bs-target="#nav-sd"
-                            type="button" role="tab" aria-controls="nav-sd" aria-selected="true">SD</button>
+                        <button class="nav-link active" id="nav-admin-tab" data-bs-toggle="tab" data-bs-target="#nav-admin"
+                            type="button" role="tab" aria-controls="nav-admin" aria-selected="true">Admin</button>
+                        <button class="nav-link" id="nav-sd-tab" data-bs-toggle="tab" data-bs-target="#nav-sd"
+                            type="button" role="tab" aria-controls="nav-sd" aria-selected="false">SD</button>
                         <button class="nav-link" id="nav-smp-tab" data-bs-toggle="tab" data-bs-target="#nav-smp"
                             type="button" role="tab" aria-controls="nav-smp" aria-selected="false">SMP</button>
                         <button class="nav-link" id="nav-sma-tab" data-bs-toggle="tab" data-bs-target="#nav-sma"
@@ -47,137 +57,141 @@
                     </div>
                 </nav>
                 <div class="tab-content" id="nav-tabContent">
-                    <div class="tab-pane fade show active" id="nav-sd" role="tabpanel" aria-labelledby="nav-sd-tab"
+                    <div class="tab-pane fade show active" id="nav-admin" role="tabpanel" aria-labelledby="nav-admin-tab"
                         tabindex="0">
-                        <div class="action">
-                            <button class="btn-add" data-bs-toggle="modal" data-bs-target="#exampleModal">Tambah
-                                Data</button>
-                            <div class="filter">
-                                <select class="form-select form-select-sm" aria-label="Small select example">
-                                    <option value="all" selected>All</option>
-                                    <option value="1">Kelas 1</option>
-                                    <option value="2">Kelas 2</option>
-                                    <option value="3">Kelas 3</option>
-                                    <option value="4">Kelas 4</option>
-                                    <option value="5">Kelas 5</option>
-                                    <option value="6">Kelas 6</option>
-                                </select>
-                            </div>
-                        </div>
-                        <table class="table table-striped">
+                        <table class="table">
                             <thead>
                                 <tr>
                                     <th scope="col">#</th>
-                                    <th scope="col">First</th>
-                                    <th scope="col">Last</th>
-                                    <th scope="col">Handle</th>
+                                    <th scope="col">Name</th>
+                                    <th scope="col">Username</th>
+                                    <th scope="col">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <th scope="row">1</th>
-                                    <td>Mark</td>
-                                    <td>Otto</td>
-                                    <td>@mdo</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">2</th>
-                                    <td>Jacob</td>
-                                    <td>Thornton</td>
-                                    <td>@fat</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">3</th>
-                                    <td colspan="2">Larry the Bird</td>
-                                    <td>@twitter</td>
-                                </tr>
+                                @if ($admin->count() != 0)
+                                    @foreach ($admin as $a)
+                                        <tr>
+                                            <th>{{ $loop->iteration }}</th>
+                                            <td>{{ $a->name }}</td>
+                                            <td>{{ $a->username }}</td>
+                                            <td>
+                                                <button class="btn btn-outline-warning">
+                                                    <i class="ph ph-pen"></i>
+                                                </button>
+                                                <a href="/user/destroy/{{ $a->id }}" class="btn btn-outline-danger">
+                                                    <i class="ph ph-trash"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                @else
+                                    <tr>
+                                        <td colspan="4" style="text-align: center">Tidak ada data</td>
+                                    </tr>
+                                @endif
+
                             </tbody>
                         </table>
                     </div>
-                    <div class="tab-pane fade" id="nav-smp" role="tabpanel" aria-labelledby="nav-smp-tab" tabindex="0">
-                        <div class="action">
-                            <button class="btn-add" data-bs-toggle="modal" data-bs-target="#exampleModal">Tambah
-                                Data</button>
-                            <div class="filter">
-                                <select class="form-select form-select-sm" aria-label="Small select example">
-                                    <option value="all" selected>All</option>
-                                    <option value="7">Kelas 7</option>
-                                    <option value="8">Kelas 8</option>
-                                    <option value="9">Kelas 9</option>
-                                </select>
-                            </div>
-                        </div>
-                        <table class="table table-striped">
+                    <div class="tab-pane fade" id="nav-sd" role="tabpanel" aria-labelledby="nav-sd-tab" tabindex="0">
+                        <table class="table">
                             <thead>
                                 <tr>
                                     <th scope="col">#</th>
-                                    <th scope="col">First</th>
-                                    <th scope="col">Last</th>
-                                    <th scope="col">Handle</th>
+                                    <th scope="col">Name</th>
+                                    <th scope="col">Username</th>
+                                    <th scope="col">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
+                                @if ($tutor_sd->count() != 0)
+                                    @foreach ($tutor_sd as $tsd)
+                                        <tr>
+                                            <th>{{ $loop->iteration }}</th>
+                                            <td>{{ $tsd->name }}</td>
+                                            <td>{{ $tsd->username }}</td>
+                                            <td>
+                                                <button class="btn btn-outline-warning">
+                                                    <i class="ph ph-pen"></i>
+                                                </button>
+                                                <button class="btn btn-outline-danger">
+                                                    <i class="ph ph-trash"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                @else
+                                    <tr>
+                                        <td colspan="4" style="text-align: center">Tidak ada data</td>
+                                    </tr>
+                                @endif
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="tab-pane fade" id="nav-smp" role="tabpanel" aria-labelledby="nav-smp-tab"
+                        tabindex="0">
+                        <table class="table">
+                            <thead>
                                 <tr>
-                                    <th scope="row">1</th>
-                                    <td>Mark</td>
-                                    <td>Otto</td>
-                                    <td>@mdo</td>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Name</th>
+                                    <th scope="col">Username</th>
+                                    <th scope="col">Action</th>
                                 </tr>
-                                <tr>
-                                    <th scope="row">2</th>
-                                    <td>Jacob</td>
-                                    <td>Thornton</td>
-                                    <td>@fat</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">3</th>
-                                    <td colspan="2">Larry the Bird</td>
-                                    <td>@twitter</td>
-                                </tr>
+                            </thead>
+                            <tbody>
+                                @if ($tutor_smp->count() != 0)
+                                    @foreach ($tutor_smp as $tsmp)
+                                        <tr>
+                                            <th>{{ $loop->iteration }}</th>
+                                            <td>{{ $tsmp->name }}</td>
+                                            <td>{{ $tsmp->username }}</td>
+                                            <td>
+                                                <button class="btn btn-outline-warning">
+                                                    <i class="ph ph-pen"></i>
+                                                </button>
+                                                <button class="btn btn-outline-danger">
+                                                    <i class="ph ph-trash"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                @else
+                                    <tr>
+                                        <td colspan="4" style="text-align: center">Tidak ada data</td>
+                                    </tr>
+                                @endif
                             </tbody>
                         </table>
                     </div>
                     <div class="tab-pane fade" id="nav-sma" role="tabpanel" aria-labelledby="nav-sma-tab"
                         tabindex="0">
-                        <div class="action">
-                            <button class="btn-add" data-bs-toggle="modal" data-bs-target="#exampleModal">Tambah
-                                Data</button>
-                            <div class="filter">
-                                <select class="form-select form-select-sm" aria-label="Small select example">
-                                    <option value="all" selected>All</option>
-                                    <option value="10">Kelas 10</option>
-                                    <option value="11">Kelas 11</option>
-                                    <option value="12">Kelas 12</option>
-                                </select>
-                            </div>
-                        </div>
-                        <table class="table table-striped">
+                        <table class="table">
                             <thead>
                                 <tr>
                                     <th scope="col">#</th>
-                                    <th scope="col">First</th>
-                                    <th scope="col">Last</th>
-                                    <th scope="col">Handle</th>
+                                    <th scope="col">Name</th>
+                                    <th scope="col">Username</th>
+                                    <th scope="col">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <th scope="row">1</th>
-                                    <td>Mark</td>
-                                    <td>Otto</td>
-                                    <td>@mdo</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">2</th>
-                                    <td>Jacob</td>
-                                    <td>Thornton</td>
-                                    <td>@fat</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">3</th>
-                                    <td colspan="2">Larry the Bird</td>
-                                    <td>@twitter</td>
-                                </tr>
+                                @foreach ($tutor_sma as $tsma)
+                                    <tr>
+                                        <th>{{ $loop->iteration }}</th>
+                                        <td>{{ $tsma->name }}</td>
+                                        <td>{{ $tsma->username }}</td>
+                                        <td>
+                                            <button class="btn btn-outline-warning">
+                                                <i class="ph ph-pen"></i>
+                                            </button>
+                                            <button class="btn btn-outline-danger">
+                                                <i class="ph ph-trash"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
@@ -191,17 +205,44 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Input Tutor Baru</h1>
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Input User Baru</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <div class="new-form">
-                        ...
+                        <form action="/user/store" method="post">
+                            @csrf
+                            <div class="mb-3">
+                                <label for="name" class="form-label">Name</label>
+                                <input type="test" class="form-control" id="name" name="name"
+                                    placeholder="Masukan nama">
+                            </div>
+                            <div class="mb-3">
+                                <label for="username" class="form-label">Username</label>
+                                <input type="test" class="form-control" id="username" name="username"
+                                    placeholder="Masukan username">
+                            </div>
+                            <div class="mb-3">
+                                <label for="password" class="form-label">Password</label>
+                                <input type="password" class="form-control" id="password" name="password"
+                                    placeholder="Masukan password">
+                            </div>
+                            <div class="mb-3">
+                                <label for="role" class="form-label">Role</label>
+                                <select class="form-select" aria-label="Default select example" id="role"
+                                    name="id_role">
+                                    <option selected>-- Select Role --</option>
+                                    @foreach ($roles as $r)
+                                        <option value="{{ $r->id }}">{{ $r->role }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <hr>
+                            <div class="mb-3">
+                                <input class="btn-submit" type="submit" value="Submit User">
+                            </div>
+                        </form>
                     </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
                 </div>
             </div>
         </div>
