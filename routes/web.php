@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\RoleController;
+use App\Http\Controllers\SiswaController;
 use App\Http\Controllers\UserController;
 
 Route::get('/', function () {
@@ -15,8 +16,8 @@ Route::prefix('user')->group(function () {
     Route::get('/destroy/{id}', [UserController::class, 'destroyUser']);
 });
 
-Route::get('/siswa', function () {
-    return view('siswa');
+Route::prefix('siswa')->group(function () {
+    Route::get('/', [SiswaController::class, 'index']);
 });
 
 Route::get('/kelas', function () {
