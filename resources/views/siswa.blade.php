@@ -38,8 +38,10 @@
             <div class="data-table">
                 <nav>
                     <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                        <button class="nav-link active" id="nav-sd-tab" data-bs-toggle="tab" data-bs-target="#nav-sd"
-                            type="button" role="tab" aria-controls="nav-sd" aria-selected="true">SD</button>
+                        <button class="nav-link active" id="nav-baru-tab" data-bs-toggle="tab" data-bs-target="#nav-baru"
+                            type="button" role="tab" aria-controls="nav-baru" aria-selected="true">Baru</button>
+                        <button class="nav-link" id="nav-sd-tab" data-bs-toggle="tab" data-bs-target="#nav-sd"
+                            type="button" role="tab" aria-controls="nav-sd" aria-selected="false">SD</button>
                         <button class="nav-link" id="nav-smp-tab" data-bs-toggle="tab" data-bs-target="#nav-smp"
                             type="button" role="tab" aria-controls="nav-smp" aria-selected="false">SMP</button>
                         <button class="nav-link" id="nav-sma-tab" data-bs-toggle="tab" data-bs-target="#nav-sma"
@@ -47,10 +49,49 @@
                     </div>
                 </nav>
                 <div class="tab-content" id="nav-tabContent">
-                    <div class="tab-pane fade show active" id="nav-sd" role="tabpanel" aria-labelledby="nav-sd-tab"
+                    <div class="tab-pane fade show active" id="nav-baru" role="tabpanel" aria-labelledby="nav-baru-tab"
                         tabindex="0">
                         <div class="action">
                             <button class="btn-add" data-bs-toggle="modal" data-bs-target="#exampleModal">Tambah
+                                Data</button>
+                        </div>
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Nama</th>
+                                    <th scope="col">Tipe</th>
+                                    <th scope="col">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @if ($siswa->count() != 0)
+                                    @foreach ($siswa as $s)
+                                        <tr>
+                                            <th>{{ $loop->iteration }}</th>
+                                            <td>{{ $s->nama }}</td>
+                                            <td>{{ $s->tipe }}</td>
+                                            <td>
+                                                <button class="btn btn-outline-warning">
+                                                    <i class="ph ph-pen"></i>
+                                                </button>
+                                                <a href="/user/destroy/{{ $s->id }}" class="btn btn-outline-danger">
+                                                    <i class="ph ph-trash"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                @else
+                                    <tr>
+                                        <td colspan="4" style="text-align: center">Tidak ada data</td>
+                                    </tr>
+                                @endif
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="tab-pane fade" id="nav-sd" role="tabpanel" aria-labelledby="nav-sd-tab" tabindex="0">
+                        <div class="action">
+                            <button class="btn-add me-3" data-bs-toggle="modal" data-bs-target="#exampleModal">Tambah
                                 Data</button>
                             <div class="filter">
                                 <select class="form-select form-select-sm" aria-label="Small select example">
@@ -94,7 +135,8 @@
                             </tbody>
                         </table>
                     </div>
-                    <div class="tab-pane fade" id="nav-smp" role="tabpanel" aria-labelledby="nav-smp-tab" tabindex="0">
+                    <div class="tab-pane fade" id="nav-smp" role="tabpanel" aria-labelledby="nav-smp-tab"
+                        tabindex="0">
                         <div class="action">
                             <button class="btn-add" data-bs-toggle="modal" data-bs-target="#exampleModal">Tambah
                                 Data</button>
