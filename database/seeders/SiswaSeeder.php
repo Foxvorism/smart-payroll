@@ -20,10 +20,9 @@ class SiswaSeeder extends Seeder
         $createdAt = Carbon::today()->toDateString();
         $updatedAt = Carbon::today()->toDateString();
 
-        for ($i = 0; $i < 5; $i++) {
+        for ($i = 0; $i < 10; $i++) {
             Siswa::insert([
                 'nama' => $faker->name,
-                'tipe' => 'full',
                 'created_at' => $createdAt,
                 'updated_at' => $updatedAt,
             ]);
