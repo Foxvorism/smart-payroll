@@ -12,7 +12,7 @@
                 </nav>
             </div>
             <div class="col welcome">
-                <div class="message">Selamat datang, <b>`#role` `#nama`</b></div>
+                <div class="message">Selamat datang, <b>{{ $user->role->role }} {{ $user->name }}</b></div>
             </div>
         </div>
     </div>
@@ -55,12 +55,11 @@
                             <button class="btn-add" data-bs-toggle="modal" data-bs-target="#exampleModal">Tambah
                                 Data</button>
                         </div>
-                        <table class="table table-striped">
+                        <table id="table_siswa" class="stripe" style="width:100%">
                             <thead>
                                 <tr>
-                                    <th scope="col">#</th>
+                                    <th scope="col" style="text-align: left;">No</th>
                                     <th scope="col">Nama</th>
-                                    <th scope="col">Tipe</th>
                                     <th scope="col">Action</th>
                                 </tr>
                             </thead>
@@ -68,9 +67,8 @@
                                 @if ($siswa->count() != 0)
                                     @foreach ($siswa as $s)
                                         <tr>
-                                            <th>{{ $loop->iteration }}</th>
+                                            <th style="text-align: center;">{{ $loop->iteration }}</th>
                                             <td>{{ $s->nama }}</td>
-                                            <td>{{ $s->tipe }}</td>
                                             <td>
                                                 <button class="btn btn-outline-warning">
                                                     <i class="ph ph-pen"></i>
