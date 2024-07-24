@@ -23,19 +23,35 @@
                             <div class="logo">
                                 <img src="{{ asset('assets/img/LogoSmart.png') }}" alt="">
                             </div>
-                            <form action="">
+                            <form action="/login" method="post">
+                                @csrf
                                 <div class="username">
                                     <div class="title">Username</div>
-                                    <input type="text" name="" class="auth-input"
+                                    <input type="text" name="username" class="auth-input"
                                         placeholder="Masukan username">
+                                    @if ($errors->has('username'))
+                                        <div>
+                                            {{ $errors->first('username') }}
+                                        </div>
+                                    @endif
                                 </div>
                                 <div class="password">
                                     <div class="title">Password</div>
-                                    <input type="password" name="" class="auth-input"
+                                    <input type="password" name="password" class="auth-input"
                                         placeholder="Masukan password">
+                                    @if ($errors->has('password'))
+                                        <div>
+                                            {{ $errors->first('password') }}
+                                        </div>
+                                    @endif
                                 </div>
                                 <div class="submit">
                                     <button class="btn-submit">Login</button>
+                                    @if (session('error'))
+                                        <div>
+                                            {{ session('error') }}
+                                        </div>
+                                    @endif
                                 </div>
                             </form>
                         </div>
