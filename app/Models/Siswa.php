@@ -11,7 +11,6 @@ class Siswa extends Model
 
     protected $table = "m_siswa";
     protected $fillable = [
-        'nama',
-        'tipe'
+        'nama'
     ];
 }
