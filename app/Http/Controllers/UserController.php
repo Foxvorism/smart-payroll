@@ -5,9 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
-class UserController extends Controller
+class UserController
 {
     public function index()
     {
@@ -17,6 +18,7 @@ class UserController extends Controller
         $tutor_sma = User::where('id_role', 4)->with('role')->get();
 
         $roles = Role::all();
+        $user = Auth::user();
 
         // return response()->json($users);
 
@@ -26,6 +28,7 @@ class UserController extends Controller
             'tutor_smp' => $tutor_smp,
             'tutor_sma' => $tutor_sma,
             'roles' => $roles,
+            'user' => $user
         ]);
     }
 
