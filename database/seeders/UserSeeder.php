@@ -23,9 +23,9 @@ class UserSeeder extends Seeder
         $updatedAt = Carbon::today()->toDateString();
         $roles = Role::pluck('id')->toArray();
 
-        for ($i = 0; $i < 5; $i++) {
+        for ($i = 0; $i < 3; $i++) {
             User::insert([
-                'id_role' => $faker->randomElement($roles),
+                'id_role' => $i + 1,
                 'name' => $faker->name,
                 'username' => 'maul' . $i + 1,
                 'password' => Hash::make('rahasia'),
