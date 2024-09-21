@@ -59,7 +59,7 @@
                 <div class="tab-content" id="nav-tabContent">
                     <div class="tab-pane fade show active" id="nav-admin" role="tabpanel" aria-labelledby="nav-admin-tab"
                         tabindex="0">
-                        <table class="table">
+                        <table id="table_user" class="stripe" style="width:100%">
                             <thead>
                                 <tr>
                                     <th scope="col">#</th>

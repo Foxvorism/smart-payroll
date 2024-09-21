@@ -23,7 +23,7 @@ class AuthController
         if (Auth::attempt($credential)) {
             $request->session()->regenerate();
 
-            return redirect()->intended('/siswa')->with('login_success', true);
+            return redirect()->intended('/user')->with('login_success', true);
         }
 
         return back()->withErrors([

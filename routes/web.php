@@ -11,7 +11,6 @@ Route::get('/', [AuthController::class, 'index'])->name('loginView');
 Route::post('/login', [AuthController::class, 'authenticate'])->name('login');
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
-// Admin Dashboard Routes
 Route::middleware(['auth'])->group(function () {
     Route::prefix('user')->group(function () {
         Route::get('/', [UserController::class, 'index'])->name('userIndex');

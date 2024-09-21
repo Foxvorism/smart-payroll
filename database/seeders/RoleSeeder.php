@@ -30,13 +30,7 @@ class RoleSeeder extends Seeder
         ]);
 
         Role::insert([
-            'role' => 'Tutor SMP',
-            'created_at' => $createdAt,
-            'updated_at' => $updatedAt,
-        ]);
-
-        Role::insert([
-            'role' => 'Tutor SMA',
+            'role' => 'Tutor SMP/SMA',
             'created_at' => $createdAt,
             'updated_at' => $updatedAt,
         ]);

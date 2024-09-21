@@ -55,7 +55,7 @@
                             <button class="btn-add" data-bs-toggle="modal" data-bs-target="#exampleModal">Tambah
                                 Data</button>
                         </div>
-                        <table id="table_siswa" class="stripe" style="width:100%">
+                        <table class="stripe" style="width:100%">
                             <thead>
                                 <tr>
                                     <th scope="col" style="text-align: left;">No</th>
